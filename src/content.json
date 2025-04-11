@@ -1,0 +1,115 @@
+{
+    "aboutMe": [
+        "Desenvolvedor Backend com experiência em PHP, Java (8 e 11) e JavaScript, atuando no desenvolvimento e manutenção de sistemas web e bancos de dados. Desenvolvedor Certificado em Fullstack Jr - Java (Codifica e +prati).",
+        "Experiência em frameworks como Laravel e Spring, além de práticas ágeis e versionamento com Git."
+    ],
+    "projects": [
+        {
+            "name": "Conecta Canãa",
+            "description": "O Conecta Canaã é um aplicativo que permite aos cidadãos de Canaã dos Carajás solicitar serviços à prefeitura municipal.",
+            "skills": [
+                "Typescript",
+                "Javascript",
+                "React",
+                "React Native",
+                "Kotlin/Java",
+                "MongoDB"
+            ],
+            "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/7f/27/25/7f2725a1-c430-b71e-60f5-3b7bdc99bd02/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/1200x600wa.png",
+            "link": "https://apps.apple.com/br/app/conecta-cana%C3%A3/id1596161476"
+        },
+        {
+            "name": "Conecta Educação - UFOPA/UFPA",
+            "description": "Sistema de gerenciamento de informações de estudantes dos colégios de canaã dos carajás.​",
+            "skills": [
+                "Typescript",
+                "Javascript",
+                "MongoDB",
+                "Kotlin/Java",
+                "React",
+                "React Native."
+            ],
+            "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/7f/27/25/7f2725a1-c430-b71e-60f5-3b7bdc99bd02/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/1200x600wa.png",
+            "link": "https://educacao.smartcitycanaadoscarajas.com.br/"
+        },
+        {
+            "name": "SIGCreas",
+            "description": "Sistema de Gestão do Centro de Referência de Assistência Social - Sistema WEB para gestão de recursos e processos administrativos de socioeducandos do CREAS.",
+            "skills": [
+                "PHP",
+                "Laravel",
+                "Javascript",
+                "Postgres",
+                "MySQL"
+            ],
+            "image": "https://d1lpyqedjaq3m8.cloudfront.net/aprova/arquivosconcursos/instituicoes/2021/09/1633032050.jpg",
+            "link": "#"
+        },
+        {
+            "name": "PULSE - Universidade Federal do Oeste do Pará",
+            "description": "Sistema de gestão de informações estratégicas pós graduandos da Universidade Federal do Oeste do Pará.​",
+            "skills": [
+                "PHP",
+                "Laravel",
+                "Javascript",
+                "VueJS",
+                "Postgres",
+                "MySQL"
+            ],
+            "image": "https://santarem.pa.leg.br/wp-content/uploads/2020/10/5a6f27615fa52.jpg",
+            "link": "#"
+        }
+    ],
+    "expiriencies": [
+        {
+            "dateInterval": [
+                "2024",
+                "Atualmente"
+            ],
+            "enterprise": "Prefeitura Municipal de Santarém",
+            "jobName": "Analista e Desenvolvedor de Software",
+            "link":"#",
+            "skills": [
+                "PHP",
+                "Laravel",
+                "AlpineJS",
+                "Livewire",
+                "Tailwind",
+                "Postgres"
+            ],
+            "content": "Responsável pelo desenvolvimento e manutenção de aplicações web utilizando PHP e Java, incluindo a implementação de novas funcionalidades em sistemas internos. Realizei o gerenciamento de bancos de dados relacionais (PostgreSQL/MySQL) para garantir a integridade e performance das aplicações, além de prestar suporte técnico multissetorial para otimizar a operacionalidade dos sistemas do órgão."
+        },
+        {
+            "dateInterval": [
+                "2023",
+                "2024"
+            ],
+            "enterprise": "Prefeitura Municipal de Canãa dos Carajas e UFPA/UFOPA",
+            "jobName": "Estágio em Análise e Desenvolvimento de Software",
+            "link":"#",
+            "skills": [
+                "Javascript",
+                "Typescript",
+                "Kotlin/Java",
+                "React",
+                "React Native"
+            ],
+            "content": "Atuei no desenvolvimento de uma plataforma de IoT para o município de Canaã dos Carajás utilizando Java e TypeScript, focando no desenvolvimento de aplicações mobile e API’s REST. Realizei a integração de sistemas externos e internos por meio de tecnologias web, além de implementar soluções robustas usando microserviços para sincronização e gestão de bancos de dados (PostgreSQL/MySQL/MongoDB), garantindo escalabilidade e segurança dos dados."
+        },
+        {
+            "dateInterval": [
+                "2023",
+                "2024"
+            ],
+            "enterprise": "Universidade Federal do Oeste do Pará (UFOPA)",
+            "link":"#",
+            "jobName": "Bolsista - Desenvolvedor de Software",
+            "skills": [
+                "PHP",
+                "Laravel",
+                "VueJS"
+            ],
+            "content": "Responsável pelo desenvolvimento e manutenção de aplicações web utilizando PHP e Java, incluindo a implementação de novas funcionalidades em sistemas internos. Realizei o gerenciamento de bancos de dados relacionais (PostgreSQL/MySQL) para garantir a integridade e performance das aplicações, além de prestar suporte técnico multissetorial para otimizar a operacionalidade dos sistemas do órgão."
+        }
+    ]
+}
