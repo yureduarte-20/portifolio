@@ -1,6 +1,7 @@
 {
     "fullName": "Yure Samarone Gomes Duarte",
     "currentJobName":"Desenvolvedor Fullstack",
+    "profilePhoto" :"https://media.licdn.com/dms/image/v2/D4D03AQHCeZwqmoHmxg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1709073008060?e=1753315200&v=beta&t=ExPwOomnUMZxKkHqr7Sx__QoDjcwEX5_XgP53BLAsmo",
     "resume":"Construo soluções de software para problemas modernos.",
     "aboutMe": [
         "Desenvolvedor Backend com experiência em PHP, Java (8 e 11) e JavaScript, atuando no desenvolvimento e manutenção de sistemas web e bancos de dados. Desenvolvedor Certificado em Fullstack Jr - Java (Codifica e +prati).",
@@ -88,7 +89,7 @@
                 "2024"
             ],
             "enterprise": "Prefeitura Municipal de Canãa dos Carajas e UFPA/UFOPA",
-            "jobName": "Estágio em Análise e Desenvolvimento de Software",
+            "jobName": "Desenvolvedor Fullstack",
             "link":"#",
             "skills": [
                 "Javascript",
@@ -106,7 +107,7 @@
             ],
             "enterprise": "Universidade Federal do Oeste do Pará (UFOPA)",
             "link":"#",
-            "jobName": "Bolsista - Desenvolvedor de Software",
+            "jobName": "Bolsista - Desenvolvedor Fullstack",
             "skills": [
                 "PHP",
                 "Laravel",

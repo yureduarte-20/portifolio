@@ -7,6 +7,7 @@ document.addEventListener('alpine:init', () => {
         projects: expiriences.projects,
         resume: expiriences.resume,
         currentJobName: expiriences.currentJobName,
-        fullName: expiriences.fullName        
+        fullName: expiriences.fullName,
+        profilePhoto: expiriences.profilePhoto
     }))
 })

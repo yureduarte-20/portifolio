@@ -24,10 +24,15 @@
   <div class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-16 lg:py-0">
     <div class="lg:flex lg:justify-between lg:gap-4">
       <header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
-        <div>
-          <h1 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl" x-text="fullName"></h1>
-          <h2 class="text-3xl font-bold tracking-tight text-slate-200 sm:text-2xl" x-text="currentJobName">Desenvolvedor Fullstack</h2>
-          <p class="mt-4 max-w-xs leading-normal" x-text="resume"></p>
+        <div class="block lg:flex lg:flex-row lg:gap-2">
+          <div class="mb-2 lg:mr-2">
+              <img class="rounded" style="max-width: 100%;" x-bind:src="profilePhoto" alt="profile photo">
+          </div>
+          <div>
+            <h1 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl" x-text="fullName"></h1>
+            <h2 class="text-3xl font-bold tracking-tight text-slate-200 sm:text-2xl" x-text="currentJobName"></h2>
+            <p class="mt-4 max-w-xs leading-normal" x-text="resume"></p>
+          </div>
         </div>
         <nav class="lg:block hidden navbar">
           <ul>
