@@ -166,6 +166,7 @@
                     Entre em Contato
                 </a>
                 <a :href="personalInfo.resume"
+                target="_blank"
                     class="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-8 py-3 rounded-lg font-semibold transition-colors">
                     <i class="fas fa-download mr-2"></i>
                     Download CV
@@ -447,7 +448,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; 2025 <span x-text="personalInfo.name">Yure Samarone Gomes Duarte</span>. Todos os direitos
+            <p>&copy; <span x-text="(new Date()).getFullYear()"></span>  <span x-text="personalInfo.name">Yure Samarone Gomes Duarte</span>. Todos os direitos
                 reservados.</p>
             <p class="text-gray-400 mt-2">Desenvolvido com ❤️ usando HTML, Tailwind CSS e Alpine.js</p>
         </div>
@@ -467,18 +468,18 @@
                     website: 'https://yuresamarone.shop',
                     location: 'Santarém, Pará, Brasil',
                     summary: 'Desenvolvedor Backend com 4+ anos de experiência em sistemas web escaláveis, especializado em PHP, Java (8/11) e JavaScript. Expertise em desenvolvimento de APIs RESTful, microsserviços e integração de bancos de dados (PostgreSQL, MySQL, MongoDB).',
-                    resume: '#'
+                    resume: '/curriculo.pdf'
                 },
 
                 aboutMe: {
-                    description: 'Atuo como desenvolvedor de software na prefeitura municipal de Santarém utilizando várias tecnologias como PHP, NodeJS e outras. Graduado em Ciência da Computação pela Universidade Federal do Oeste do Pará, atualmente cursando Mestrado em Engenharia de Software na Universidade Federal do Pampa. Tenho experiência comprovada em projetos para setor público e acadêmico com foco em otimização de processos e gestão estratégica de dados.'
+                    description: 'Atuo como desenvolvedor de software na prefeitura municipal de Santarém utilizando várias tecnologias como PHP, NodeJS e outras. Graduado em Ciência da Computação pela Universidade Federal do Oeste do Pará, atualmente cursando Especilização em Desenvolvimento de Sistemas Computacionais pelo Instituto Federal do Tocantins. Tenho experiência comprovada em projetos para setor público e acadêmico com foco em otimização de processos e gestão estratégica de dados.'
                 },
 
                 educationData: [
                     {
                         id: 1,
-                        degree: 'Mestrado em Engenharia de Software',
-                        institution: 'Universidade Federal do Pampa',
+                        degree: 'Pós-Graduação Lato Sensu em Desenvolvimento de sistemas Computacionais',
+                        institution: 'Instituto Federal do Tocantins',
                         period: 'Mar 2025 - Presente'
                     },
                     {
