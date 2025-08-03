@@ -1,203 +1,619 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="pt-BR" x-data="portfolioData()">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-
-  <!-- Android -->
-  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-
-  <!-- Apple -->
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yure Samarone Gomes Duarte - Desenvolvedor Fullstack</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title x-text="personalInfo.name + ' - ' + personalInfo.title">Yure Samarone - Backend Developer</title>
+    <meta name="description" content="Portfólio de Yure Samarone Gomes Duarte - Desenvolvedor Backend especializado em PHP, Java e JavaScript">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .skill-tag {
+            transition: all 0.2s ease;
+        }
+        
+        .skill-tag:hover {
+            transform: scale(1.05);
+        }
+        
+        .section-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .typing-animation {
+            border-right: 2px solid #3b82f6;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #3b82f6; }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: #3b82f6;
+            transition: left 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            left: 0;
+        }
+    </style>
 </head>
-
-<body x-data="contentProfile"
-  class="bg-blue-950 leading-relaxed text-slate-400 antialiased selection:bg-teal-300 selection:text-teal-900">
-  <div class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-16 lg:py-0">
-    <div class="lg:flex lg:justify-between lg:gap-4">
-      <header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
-        <div class="block lg:flex lg:flex-row lg:gap-2">
-          <div class="mb-2 lg:mr-2">
-              <img class="rounded" style="max-width: 100%;" x-bind:src="profilePhoto" alt="profile photo">
-          </div>
-          <div>
-            <h1 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl" x-text="fullName"></h1>
-            <h2 class="text-3xl font-bold tracking-tight text-slate-200 sm:text-2xl" x-text="currentJobName"></h2>
-            <p class="mt-4 max-w-xs leading-normal" x-text="resume"></p>
-          </div>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm border-b border-gray-200 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-xl font-bold text-gray-800" x-text="personalInfo.name">
+                    Yure Samarone
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Início</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Sobre</a>
+                    <a href="#experience" class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Experiência</a>
+                    <a href="#projects" class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Projetos</a>
+                    <a href="#skills" class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Habilidades</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Contato</a>
+                </div>
+                <button class="md:hidden text-gray-600" @click="mobileMenuOpen = !mobileMenuOpen">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div x-show="mobileMenuOpen" x-transition class="md:hidden pb-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition-colors py-2" @click="mobileMenuOpen = false">Início</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors py-2" @click="mobileMenuOpen = false">Sobre</a>
+                    <a href="#experience" class="text-gray-600 hover:text-blue-600 transition-colors py-2" @click="mobileMenuOpen = false">Experiência</a>
+                    <a href="#projects" class="text-gray-600 hover:text-blue-600 transition-colors py-2" @click="mobileMenuOpen = false">Projetos</a>
+                    <a href="#skills" class="text-gray-600 hover:text-blue-600 transition-colors py-2" @click="mobileMenuOpen = false">Habilidades</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors py-2" @click="mobileMenuOpen = false">Contato</a>
+                </div>
+            </div>
         </div>
-        <nav class="lg:block hidden navbar">
-          <ul>
-            <li>
-              <a class="" href="#about">Sobre mim</a>
-            </li>
-            <li>
-              <a class="" href="#experience">Experiência Profissional</a>
-            </li>
-            <li>
-              <a class="" href="#projects">Projetos</a>
-            </li>
-          </ul>
-        </nav>
-        <div>
-          <ul class="flex flex-row gap-2">
-            <li>
-              <a target="_blank" class="inline-block" href="https://www.linkedin.com/in/yure-samarone-gomes-duarte/">
-                <i class="fa fa-linkedin-square" style="font-size:24px"></i>
-              </a>
-            </li>
-            <li>
-              <a target="_blank" class="inline-block" href="mailto:yureduarte4554@gmail.com">
-                <i class="fa fa-google	" style="font-size:24px"></i>
-              </a>
-            </li>
-            <li>
-              <a target="_blank" class="inline-block" href="https://github.com/yureduarte-20">
-                <i class="fa fa-github	" style="font-size:24px"></i>
-              </a>
-            </li>
-          </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div class="mb-8">
+                <img src="https://via.placeholder.com/200x200/1a202c/ffffff?text=YS" 
+                     alt="Yure Samarone" 
+                     class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-2xl">
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4" x-text="personalInfo.name">
+                Yure Samarone Gomes Duarte
+            </h1>
+            <div class="text-xl sm:text-2xl lg:text-3xl mb-6 typing-animation" x-text="personalInfo.title">
+                Backend Developer | PHP | Java | JavaScript
+            </div>
+            <p class="text-lg sm:text-xl mb-8 max-w-3xl mx-auto leading-relaxed" x-text="personalInfo.summary">
+                Desenvolvedor Backend com 4+ anos de experiência em sistemas web escaláveis, especializado em PHP, Java e JavaScript.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                <a :href="personalInfo.email" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors shadow-lg">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Entre em Contato
+                </a>
+                <a :href="personalInfo.resume" class="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-8 py-3 rounded-lg font-semibold transition-colors">
+                    <i class="fas fa-download mr-2"></i>
+                    Download CV
+                </a>
+            </div>
+            <div class="flex justify-center space-x-6">
+                <a :href="personalInfo.linkedin" target="_blank" class="text-2xl hover:text-blue-400 transition-colors">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a :href="personalInfo.github" target="_blank" class="text-2xl hover:text-gray-300 transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a :href="personalInfo.website" target="_blank" class="text-2xl hover:text-green-400 transition-colors">
+                    <i class="fas fa-globe"></i>
+                </a>
+            </div>
         </div>
-      </header>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
 
-      <main class="pt-24 lg:w-[52%] lg:py-24">
-        <section id="about" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24" aria-label="About me">
-          <div
-            class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only">Sobre Mim</h2>
-          </div>
-          <div>
-            <template x-for="paragraph of aboutMe">
-              <p class="mb-4" x-text="paragraph"></p>
-            </template>
-
-          </div>
-        </section>
-
-        <section id="experience" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-          aria-label="Work experience">
-          <div
-            class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only">Experiência</h2>
-          </div>
-          <div>
-            <ol class="group/list">
-              <template x-for="exp of expiriences">
-                <li class="mb-12">
-                  <div
-                    class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                    <div
-                      class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg">
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Sobre Mim</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-lg leading-relaxed text-gray-600" x-text="aboutMe.description">
+                        Atuo como desenvolvedor de software na prefeitura municipal de Santarém utilizando várias tecnologias como PHP, NodeJS e outras. Graduado em Ciência da Computação pela Universidade Federal do Oeste do Pará, atualmente cursando Mestrado em Engenharia de Software.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Localização</h4>
+                            <p class="text-gray-600" x-text="personalInfo.location">Santarém, Pará, Brasil</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Email</h4>
+                            <p class="text-gray-600" x-text="personalInfo.email">yureduarte4554@gmail.com</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Experiência</h4>
+                            <p class="text-gray-600">4+ anos</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Idiomas</h4>
+                            <p class="text-gray-600">Português, Inglês</p>
+                        </div>
                     </div>
-                    <header
-                      class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2"
-                      aria-label="2024 to Present" x-text="exp.dateInterval.join(' - ')"></header>
-                    <div class="z-10 sm:col-span-6">
-                      <h3 class="font-medium leading-snug text-slate-200">
-                        <div><a
-                            class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
-                            x-bind:href="exp.link" rel="noreferrer noopener"
-                            aria-label="Senior Frontend Engineer, Accessibility at Klaviyo (opens in a new tab)"><span
-                              class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span><span>
-                              <span x-text="exp.jobName"></span> <span class="inline-block" x-text="exp.enterprise"><svg
-                                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                  class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                                  aria-hidden="true">
-                                  <path fill-rule="evenodd"
-                                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                                    clip-rule="evenodd"></path>
-                                </svg></span></span></a></div>
-                      </h3>
-                      <p class="mt-2 text-sm leading-normal" x-text="exp.content"></p>
-                      <ul class="mt-2 flex flex-wrap" aria-label="Tecnologias utilizadas">
-                        <template x-for="skill of exp.skills">
-                          <li class="mr-1.5 mt-2">
-                            <div
-                              class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 "
-                              x-text="skill"></div>
-                          </li>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-4">Formação Acadêmica</h4>
+                        <template x-for="education in educationData" :key="education.id">
+                            <div class="mb-4 last:mb-0">
+                                <h5 class="font-medium text-gray-800" x-text="education.degree"></h5>
+                                <p class="text-gray-600" x-text="education.institution"></p>
+                                <p class="text-sm text-gray-500" x-text="education.period"></p>
+                            </div>
                         </template>
-                      </ul>
                     </div>
-                  </div>
-                </li>
-              </template>
-            </ol>
-          </div>
-        </section>
-        <section id="projects" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-          aria-label="Selected projects">
-          <div
-            class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only">Projetos</h2>
-          </div>
-          <div>
-            <ul class="group/list">
-              <template x-for="proje of projects">
-                <li class="mb-12">
-                  <div
-                    class="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                    <div
-                      class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Experiência Profissional</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="space-y-8">
+                <template x-for="experience in experienceData" :key="experience.id">
+                    <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800" x-text="experience.position"></h3>
+                                <p class="text-blue-600 font-medium" x-text="experience.company"></p>
+                            </div>
+                            <div class="text-gray-500 mt-2 md:mt-0">
+                                <span x-text="experience.period"></span>
+                                <span class="block md:inline md:ml-2" x-text="experience.location"></span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4" x-text="experience.description"></p>
+                        <div class="flex flex-wrap gap-2">
+                            <template x-for="skill in experience.skills" :key="skill">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium" x-text="skill"></span>
+                            </template>
+                        </div>
                     </div>
-                    <div class="z-10 sm:order-2 sm:col-span-6">
-                      <h3><a
-                          class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
-                          x-bind:href="proje.link" target="_blank" rel="noreferrer noopener"
-                          aria-label="Spotify Profile (opens in a new tab)"><span
-                            class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span><span>
-                            <span x-text="proje.name"></span>
-                            <span class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                fill="currentColor"
-                                class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                                aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                  d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                                  clip-rule="evenodd"></path>
-                              </svg></span></span></a></h3>
-                      <p class="mt-2 text-sm leading-normal" x-text="proje.description"></p>
-                      <a class="relative mt-2 inline-flex items-center text-sm font-medium text-slate-300 hover:text-teal-300 focus-visible:text-teal-300"
-                        href="https://github.com/bchiang7/spotify-profile" target="_blank" rel="noreferrer noopener"
-                        aria-label="677 stars on GitHub (opens in a new tab)"><svg xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20" fill="currentColor" class="mr-1 h-3 w-3" aria-hidden="true">
-                          <path fill-rule="evenodd"
-                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                            clip-rule="evenodd"></path>
-                        </svg><span>677</span></a>
-                      <ul class="mt-2 flex flex-wrap" aria-label="Technologies used:">
-                        <template x-for="skill of proje.skills">
-                          <li class="mr-1.5 mt-2">
-                            <div
-                              class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 "
-                              x-text="skill"></div>
-                          </li>
-                        </template>
-                      </ul>
+                </template>
+            </div>
+        </div>
+    </section>
 
-                    </div><img alt="Spotify Profile app homepage" loading="lazy" width="200" height="48"
-                      decoding="async" data-nimg="1"
-                      class="aspect-video object-cover rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1"
-                      style="color:transparent" x-bind:src="proje.image">
-                  </div>
-                </li>
-              </template>
-            </ul>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Projetos</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <template x-for="project in projectsData" :key="project.id">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover border border-gray-200">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-gray-800" x-text="project.name"></h3>
+                                <div class="flex space-x-2">
+                                    <a :href="project.github" target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors" x-show="project.github">
+                                        <i class="fab fa-github text-lg"></i>
+                                    </a>
+                                    <a :href="project.demo" target="_blank" class="text-blue-600 hover:text-blue-800 transition-colors" x-show="project.demo">
+                                        <i class="fas fa-external-link-alt text-lg"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4" x-text="project.description"></p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <template x-for="tech in project.technologies" :key="tech">
+                                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm" x-text="tech"></span>
+                                </template>
+                            </div>
+                            <div class="text-sm text-gray-500" x-text="project.period"></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
 
-          </div>
-        </section>
-      </main>
-    </div>
-  </div>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Habilidades</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <template x-for="category in skillsData" :key="category.name">
+                    <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <i :class="category.icon" class="text-4xl text-blue-600 mb-2"></i>
+                            <h3 class="text-xl font-bold text-gray-800" x-text="category.name"></h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <template x-for="skill in category.skills" :key="skill">
+                                <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium" x-text="skill"></span>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
 
-  <script type="module" src="/src/main.js"></script>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Entre em Contato</h2>
+                <div class="w-20 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Vamos conversar!</h3>
+                        <p class="text-lg leading-relaxed mb-8">
+                            Estou sempre aberto a novas oportunidades e projetos interessantes. 
+                            Entre em contato comigo para discutir como posso ajudar em seu próximo projeto.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-envelope text-2xl text-blue-400"></i>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p x-text="personalInfo.email">yureduarte4554@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-map-marker-alt text-2xl text-blue-400"></i>
+                            <div>
+                                <h4 class="font-semibold">Localização</h4>
+                                <p x-text="personalInfo.location">Santarém, Pará, Brasil</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-globe text-2xl text-blue-400"></i>
+                            <div>
+                                <h4 class="font-semibold">Website</h4>
+                                <a :href="personalInfo.website" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors" x-text="personalInfo.website">
+                                    https://yuresamarone.shop
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-6">
+                        <a :href="personalInfo.linkedin" target="_blank" class="text-3xl hover:text-blue-400 transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a :href="personalInfo.github" target="_blank" class="text-3xl hover:text-gray-300 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a :href="personalInfo.website" target="_blank" class="text-3xl hover:text-green-400 transition-colors">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                    <form class="space-y-6" @submit.prevent="submitForm">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2">Nome</label>
+                            <input type="text" id="name" x-model="contactForm.name" 
+                                   class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-blue-400" 
+                                   placeholder="Seu nome">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" id="email" x-model="contactForm.email" 
+                                   class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-blue-400" 
+                                   placeholder="seu@email.com">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-2">Mensagem</label>
+                            <textarea id="message" x-model="contactForm.message" rows="5" 
+                                      class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none" 
+                                      placeholder="Sua mensagem..."></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 <span x-text="personalInfo.name">Yure Samarone Gomes Duarte</span>. Todos os direitos reservados.</p>
+            <p class="text-gray-400 mt-2">Desenvolvido com ❤️ usando HTML, Tailwind CSS e Alpine.js</p>
+        </div>
+    </footer>
+
+    <script>
+        function portfolioData() {
+            return {
+                mobileMenuOpen: false,
+                
+                personalInfo: {
+                    name: 'Yure Samarone Gomes Duarte',
+                    title: 'Backend Developer | PHP | Java | JavaScript | Git',
+                    email: 'mailto:yureduarte4554@gmail.com',
+                    linkedin: 'https://www.linkedin.com/in/yure-samarone-gomes-duarte/',
+                    github: 'https://github.com/yureduarte-20',
+                    website: 'https://yuresamarone.shop',
+                    location: 'Santarém, Pará, Brasil',
+                    summary: 'Desenvolvedor Backend com 4+ anos de experiência em sistemas web escaláveis, especializado em PHP, Java (8/11) e JavaScript. Expertise em desenvolvimento de APIs RESTful, microsserviços e integração de bancos de dados (PostgreSQL, MySQL, MongoDB).',
+                    resume: '#'
+                },
+                
+                aboutMe: {
+                    description: 'Atuo como desenvolvedor de software na prefeitura municipal de Santarém utilizando várias tecnologias como PHP, NodeJS e outras. Graduado em Ciência da Computação pela Universidade Federal do Oeste do Pará, atualmente cursando Mestrado em Engenharia de Software na Universidade Federal do Pampa. Tenho experiência comprovada em projetos para setor público e acadêmico com foco em otimização de processos e gestão estratégica de dados.'
+                },
+                
+                educationData: [
+                    {
+                        id: 1,
+                        degree: 'Mestrado em Engenharia de Software',
+                        institution: 'Universidade Federal do Pampa',
+                        period: 'Mar 2025 - Presente'
+                    },
+                    {
+                        id: 2,
+                        degree: 'Bacharel em Ciência da Computação',
+                        institution: 'Universidade Federal do Oeste do Pará (UFOPA)',
+                        period: 'Mar 2019 - Mai 2024'
+                    }
+                ],
+                
+                experienceData: [
+                    {
+                        id: 1,
+                        position: 'Desenvolvedor Fullstack',
+                        company: 'Prefeitura de Santarém',
+                        period: 'Abr 2024 - Presente',
+                        location: 'Santarém, Pará, Brasil',
+                        description: 'Responsável pelo desenvolvimento e manutenção de aplicações web utilizando PHP e Java, incluindo a implementação de novas funcionalidades em sistemas internos. Realizei o gerenciamento de bancos de dados relacionais (PostgreSQL/MySQL) para garantir a integridade e performance das aplicações, além de prestar suporte técnico multissetorial.',
+                        skills: ['PHP', 'Java', 'Laravel', 'PostgreSQL', 'MySQL']
+                    },
+                    {
+                        id: 2,
+                        position: 'Desenvolvedor Fullstack',
+                        company: 'UFPA/UFOPA',
+                        period: 'Set 2021 - Nov 2024',
+                        location: 'Santarém, Pará, Brasil',
+                        description: 'Atuei no desenvolvimento de uma plataforma de IoT para o município de Canaã dos Carajás utilizando Java e TypeScript, focando no desenvolvimento de aplicações React, mobile e APIs REST. Realizei a integração de sistemas externos e internos por meio de tecnologias web, além de implementar soluções robustas usando microsserviços.',
+                        skills: ['Java', 'TypeScript', 'React', 'React Native', 'MongoDB', 'PostgreSQL', 'MySQL', 'Microsserviços', 'IoT']
+                    },
+                    {
+                        id: 3,
+                        position: 'Bolsista - Desenvolvedor de Software',
+                        company: 'Universidade Federal do Oeste do Pará (UFOPA)',
+                        period: 'Mar 2023 - Abr 2024',
+                        location: 'Santarém, Pará, Brasil',
+                        description: 'Atuei na construção do backend de um sistema web para gestão estratégica de informações de cursos de graduação e pós-graduação. Utilizei PHP e Laravel para desenvolvimento de APIs e integração com bancos de dados PostgreSQL, garantindo eficiência na manipulação de dados acadêmicos.',
+                        skills: ['PHP', 'Laravel', 'PostgreSQL', 'TypeScript', 'Vue.js']
+                    }
+                ],
+                
+                projectsData: [
+                    {
+                        id: 1,
+                        name: 'SigLicenças',
+                        description: 'Sistema de Gestão de Licenças e Infrações da Secretaria Municipal de Urbanismo e Serviços Públicos. O Sistema foi concebido pela secretaria municipal de finanças.',
+                        technologies: ['PHP', 'PostgreSQL', 'Laravel', 'JavaScript'],
+                        period: 'Jan 2025 - Mar 2025',
+                        github: '',
+                        demo: ''
+                    },
+                    {
+                        id: 2,
+                        name: 'SigCreas',
+                        description: 'Sistema de Gestão do Centro de Referência de Assistência Social - Sistema WEB para gestão de recursos e processos administrativos de socioeducandos do CREAS.',
+                        technologies: ['PHP', 'Laravel', 'Java', 'JavaScript', 'PostgreSQL', 'MySQL'],
+                        period: 'Mai 2024 - Jan 2025',
+                        github: '',
+                        demo: ''
+                    },
+                    {
+                        id: 3,
+                        name: 'PULSE',
+                        description: 'Sistema de gestão de informações estratégicas pós graduandos da Universidade Federal do Oeste do Pará.',
+                        technologies: ['PHP', 'Vue.js', 'Java', 'JavaScript', 'PostgreSQL', 'MySQL'],
+                        period: '2023 - 2024',
+                        github: '',
+                        demo: ''
+                    },
+                    {
+                        id: 4,
+                        name: 'Conecta Canaã',
+                        description: 'Sistema de Coleta de feedback dos serviços da prefeitura do município de Canaã dos Carajás.',
+                        technologies: ['PHP', 'TypeScript', 'JavaScript', 'MongoDB', 'React', 'React Native'],
+                        period: '2021 - 2024',
+                        github: '',
+                        demo: ''
+                    },
+                    {
+                        id: 5,
+                        name: 'Conecta Educação',
+                        description: 'Sistema de gerenciamento de informações de estudantes dos colégios de canaã dos carajás.',
+                        technologies: ['PHP', 'TypeScript', 'JavaScript', 'MongoDB', 'Kotlin', 'React', 'React Native'],
+                        period: '2021 - 2024',
+                        github: '',
+                        demo: ''
+                    },
+                    {
+                        id: 6,
+                        name: 'Event Scheduler',
+                        description: 'Sistema de agendamento de eventos desenvolvido com TypeScript.',
+                        technologies: ['TypeScript', 'Node.js'],
+                        period: '2024',
+                        github: 'https://github.com/yureduarte-20/event-scheduler',
+                        demo: ''
+                    }
+                ],
+                
+                skillsData: [
+                    {
+                        name: 'Linguagens',
+                        icon: 'fas fa-code',
+                        skills: ['PHP', 'Java', 'JavaScript', 'TypeScript', 'SQL', 'Kotlin']
+                    },
+                    {
+                        name: 'Frameworks',
+                        icon: 'fas fa-layer-group',
+                        skills: ['Laravel', 'Spring Framework', 'React', 'React Native', 'Vue.js', 'Node.js', 'NestJS']
+                    },
+                    {
+                        name: 'Banco de Dados',
+                        icon: 'fas fa-database',
+                        skills: ['PostgreSQL', 'MySQL', 'SQLite', 'MongoDB']
+                    },
+                    {
+                        name: 'Ferramentas',
+                        icon: 'fas fa-tools',
+                        skills: ['Git', 'Docker', 'RabbitMQ', 'RESTful APIs', 'Microsserviços']
+                    }
+                ],
+                
+                contactForm: {
+                    name: '',
+                    email: '',
+                    message: ''
+                },
+                
+                submitForm() {
+                    // Implementar envio do formulário
+                    alert('Funcionalidade de envio será implementada em breve!');
+                    
+                    // Reset form
+                    this.contactForm = {
+                        name: '',
+                        email: '',
+                        message: ''
+                    };
+                }
+            }
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('section-fade');
+            observer.observe(section);
+        });
+    </script>
 </body>
-
 </html>
+
