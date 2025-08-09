@@ -19,6 +19,14 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E5E8R4S15S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-E5E8R4S15S');
+    </script>
 
     <style>
         body {
@@ -165,8 +173,7 @@
                     <i class="fas fa-envelope mr-2"></i>
                     Entre em Contato
                 </a>
-                <a :href="personalInfo.resume"
-                target="_blank"
+                <a :href="personalInfo.resume" target="_blank"
                     class="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-8 py-3 rounded-lg font-semibold transition-colors">
                     <i class="fas fa-download mr-2"></i>
                     Download CV
@@ -448,7 +455,8 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; <span x-text="(new Date()).getFullYear()"></span>  <span x-text="personalInfo.name">Yure Samarone Gomes Duarte</span>. Todos os direitos
+            <p>&copy; <span x-text="(new Date()).getFullYear()"></span> <span x-text="personalInfo.name">Yure Samarone
+                    Gomes Duarte</span>. Todos os direitos
                 reservados.</p>
             <p class="text-gray-400 mt-2">Desenvolvido com ❤️ usando HTML, Tailwind CSS e Alpine.js</p>
         </div>
@@ -610,7 +618,7 @@
                     const publicKey = 'bc54e6a9-56a7-47f9-8e6d-d357580ca252';
                     const formData = new FormData();
                     formData.append('access_key', publicKey);
-                    for(const key in this.contactForm){
+                    for (const key in this.contactForm) {
                         formData.append(key, this.contactForm[key])
                     }
                     const response = await fetch("https://api.web3forms.com/submit", {
